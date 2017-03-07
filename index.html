@@ -16,6 +16,53 @@
         <div class="col-md-6">CUSTOMER VIEW</div>
     </div>
 </div>
+<div class="row">
+    <div class="currencyReport">
+
+    </div>
+    <div class="col-md-6">
+        <table>
+            <thead>
+            <tr>
+            <th rowspan="2">FILL ATM</th>
+            </tr>
+            </thead>
+           <tbody>
+            <tr>
+                <th>Notes </th>
+                <th> Quantity</th>
+            </tr>
+            <tr>
+                <td>2000 </td>
+                <td> <input type="number" value="0" id="no2000" min="0" required></td>
+            </tr>
+
+            <tr>
+                <td>500 </td>
+                <td> <input type="number" value="0" id="no500" min="0" required></td>
+            </tr>
+
+            <tr>
+                <td>100 </td>
+                <td> <input type="number" value="0" id="no100" min="0" required></td>
+            </tr>
+            <tr>
+                <td colspan="2"><button type="button" id="addNote" onclick="addNotes()">Add Money&nbsp;<span class="glyphicon glyphicon-plus-sign"></span></button></td>
+            </tr>
+           </tbody>
+        </table> <br>
+
+
+    </div>
+    <div class="col-md-6">
+        <p>Enter amount you would like to withdraw:</p>
+        <input type="text" placeholder="Enter amount"><br/>
+        <br/><br/>
+        <button type="button" id="withdrawbtn">WITHDRAW&nbsp;<span class="glyphicon glyphicon-minus-sign"></span></button>
+    </div>
+
+</div>
+
 
 </body>
 </html>
