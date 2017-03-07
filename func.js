@@ -71,7 +71,7 @@ function addNotes()
 
 	alert("Total Money Added : " + total_money + "\nNumber of 2000 notes : " + noof2000 + "\n" + "Number of 500 notes : " + noof500+ "\nNumber of 100 notes : " + noof100);
 
-  $(".tablebody").append('<tr>'+ '<td>'+ transaction.amount +'</td>'+ '<td>'+ transaction._2000 +'</td>'+ '<td>'+ transaction._500 +'</td>'+'<td>'+transaction._100+'</td>'+'<td>'+transaction.leftAmount+'</td>'+'</tr>');
+  $(".tablebody").append('<tr class="green">'+ '<td>'+ transaction.amount +'</td>'+ '<td>'+ transaction._2000 +'</td>'+ '<td>'+ transaction._500 +'</td>'+'<td>'+transaction._100+'</td>'+'<td>'+transaction.leftAmount+'</td>'+'</tr>');
 
   $("#curAmount").text(atm.amount);
 }
@@ -140,9 +140,9 @@ function withdrawal(){
     transaction._100 = atm.avlNotes["100"];
     transaction.leftAmount = atm.amount;
 
-    $(".tablebody").append('<tr>'+ '<td>'+ transaction.amount +'</td>'+ '<td>'+ transaction._2000 +'</td>'+ '<td>'+ transaction._500 +'</td>'+'<td>'+transaction._100+'</td>'+'<td>'+transaction.leftAmount+'</td>'+'</tr>');
-
+    $(".tablebody").append('<tr class="red">'+ '<td>'+ transaction.amount +'</td>'+ '<td>'+ transaction._2000 +'</td>'+ '<td>'+ transaction._500 +'</td>'+'<td>'+transaction._100+'</td>'+'<td>'+transaction.leftAmount+'</td>'+'</tr>');
     $("#curAmount").text(atm.amount);
+	
   }
   else{
     alert("Invalid withdrawal amount!!!!!")
