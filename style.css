@@ -1,0 +1,109 @@
+.header{
+    height:100px;
+    background-color: grey;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    font-family: "Times New Roman", Georgia, Serif;
+    font-size:x-large;
+    padding:30px;
+}
+
+p{
+    font-family: "Times New Roman", Georgia, Serif;
+    font-weight: bold;
+    font-size: large;
+    padding-top: 50px;
+    padding-bottom:30px;
+}
+input{
+    border-radius: 5px;
+    height:30px;
+    background-color: gray;
+    color: white;
+    font-family: "Times New Roman", Georgia, Serif;
+    font-weight: bold;
+
+}
+#withdrawbtn{
+    border-radius:7px;
+    background-color: midnightblue;
+    color: white;
+    font-family: "Times New Roman", Georgia, Serif;
+    font-weight: bold;
+    font-size: large;
+    height:40px;
+    width:170px;
+}
+#addNote{
+    border-radius:7px;
+    background-color: midnightblue;
+    color: white;
+    font-family: "Times New Roman", Georgia, Serif;
+    font-weight: bold;
+    font-size: large;
+    height:40px;
+    float: right;;
+}
+
+.amountSummary{
+    background-color: grey;
+    font-family: "Times New Roman", Georgia, Serif;
+    font-weight: bold;
+    font-size: large;
+    color: white;
+    width: 200px;
+    margin-left:200px;
+}
+
+#tablecurrency{
+    border: 1px solid white;
+
+}
+input::-webkit-input-placeholder {
+    color: white !important;
+}
+
+input:-moz-placeholder { /* Firefox 18- */
+    color: white !important;
+}
+
+input:-ms-input-placeholder {
+    color: white !important;
+}
+
+table {
+    margin-top:50px;
+    font-family: "Times New Roman", Georgia, Serif;
+    border-collapse: collapse;
+    width: 80%;
+    margin-left:20px;
+    font-size: medium;
+    font-weight: bold;
+}
+
+td,th{
+    text-align: center;
+    padding: 6px;
+}
+thead {
+    background-color: grey;
+    color: white;
+    margin-left: 50px;
+    border-radius: 5px;
+}
+
+.notebox{
+    float: right;
+}
+
+.red{
+  background-color: red;
+  color: white;
+
+}
+.green{
+  background-color: green;
+  color: white;
+
+}

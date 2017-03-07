@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome To ATM Basic</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row header">
+        <div class="col-md-6">STATS REPORTS</div>
+        <div class="col-md-6">CUSTOMER VIEW</div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div id="currencyReport">
+            <table border="1" id="tablecurrency">
+                <thead>
+                <tr>
+                    <th>Amount</th>
+                    <th>2000</th>
+                    <th>500</th>
+                    <th>100</th>
+                    <th>Left Amount</th>
+                </tr>
+                </thead>
+                <tbody class="tablebody">
+
+                </tbody>
+            </table>
+            <br/>
+            <div class="amountSummary">
+                Current Amount:&nbsp;<span id="curAmount">0</span>
+            </div>
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <th colspan="2">FILL ATM</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th>Notes </th>
+                <th> Quantity</th>
+            </tr>
+            <tr>
+                <td>2000 </td>
+                <td> <input type="Number" min="0" value="0" id="no2000" class="notebox" required></td>
+            </tr>
+
+            <tr>
+                <td>500 </td>
+                <td> <input type="Number" min="0" value="0" id="no500" class="notebox" required></td>
+            </tr>
+
+            <tr>
+                <td>100 </td>
+                <td> <input type="Number" min="0" value="0" id="no100" class="notebox" required></td>
+            </tr>
+            <tr>
+                <td colspan="2"><button type="button" value="0" id="addNote" onclick="addNotes()">Add Money&nbsp;<span class="glyphicon glyphicon-plus-sign"></span></button></td>
+            </tr>
+            </tbody>
+        </table> <br>
+
+
+    </div>
+    <div class="col-md-6">
+        <p>Enter amount you would like to withdraw:</p>
+        <input type="text" placeholder="Enter amount" id="wd"><br/>
+        <br/><br/>
+        <button type="button" id="withdrawbtn" onclick="withdrawal()">WITHDRAW&nbsp;<span class="glyphicon glyphicon-minus-sign"></span></button>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="func.js"></script>
+</body>
+</html>
