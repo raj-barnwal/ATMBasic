@@ -43,7 +43,7 @@ function addNotes()
     alert("Please add something!!")
     return;
   }
-  var btn=document.getElementById('btn1');
+  var btn=document.getElementById('addNote');
   btn.disabled=true;
 
   addMoney(noof2000, noof500, noof100, total_money);
