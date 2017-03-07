@@ -18,6 +18,17 @@ function Atm(){
 var atm = new Atm();
 //console.log(atm);
 
+
+//Transaction class
+function Transaction(){
+  this.db_cr = 0;
+  this.amount;
+  this._2000;
+  this._500;
+  this._100;
+  this.leftAmount;
+}
+
 //Add money to Atm
 function addMoney(noof2000, noof500, noof100, total_money){
   atm.amount += total_money;
@@ -27,23 +38,26 @@ function addMoney(noof2000, noof500, noof100, total_money){
 }
 //addMoney(1,10,5,7500);
 
-//Get values from user
+
+//This function is called when Add Money button is clicked.
 function addNotes()
 {
 	var noof2000=parseInt(document.getElementById('no2000').value);
 	var noof500=parseInt(document.getElementById('no500').value);
 	var noof100=parseInt(document.getElementById('no100').value);
-  //if(noof2000 < 0 || noof500 < 0 || noof100 < 0){
-    //alert("Please enter a valid value!!!!");
-    //return;
-  //}
-	//var total_notes_added=noof2000+noof500+noof100;
+
+  /*if(noof2000 < 0 || noof500 < 0 || noof100 < 0){
+      alert("Please enter a valid value!!!!");
+      return;
+    }
+	  var total_notes_added=noof2000+noof500+noof100;*/
+
 	var total_money=(noof2000*2000 + noof500*500 + noof100*100);
   if(!total_money){
     alert("Please add something!!")
     return;
   }
-  var btn=document.getElementById('btn1');
+  var btn=document.getElementById('addNote');
   btn.disabled=true;
 
   addMoney(noof2000, noof500, noof100, total_money);
@@ -52,7 +66,7 @@ function addNotes()
 }
 
 
-//Validates that the amount can be withdrawl or not.
+//Validates that the amount can be withdrawal or not.
 function validate(amountTransacted){
 
   if(amountTransacted % 100 == 0 && amountTransacted <= atm.amount){
@@ -85,4 +99,37 @@ function validate(amountTransacted){
   return false;
 }
 
-//console.log(validate(5100));
+//console.log(validate(7100));
+
+
+
+//This array contains all the transactions.
+var stats = [];
+
+//Update value in ATM
+function withdrawMoney(noof2000, noof500, noof100, moneyWithdrawn){
+  atm.amount -= moneyWithdrawn;
+  atm.avlNotes["2000"] -= noof2000;
+  atm.avlNotes["500"] -= noof500;
+  atm.avlNotes["100"] -= noof100;
+}
+
+//This function called when withdrawal button is clicked.
+function withdrawal(){
+  var withdrawalAmount = parseInt(document.getElementById('withdrawbtn').value);
+  var result = validate(withdrawalAmount);
+  if(result){
+    withdrawMoney(result["2000"], result["500"], result["100"], withdrawalAmount);
+
+    var transaction = new Transaction();
+    transaction.amount = withdrawalAmount;
+    transaction._2000 = atm.avlNotes["2000"];
+    transaction._500 = atm.avlNotes["500"];
+    transaction._100 = atm.avlNotes["100"];
+    transaction.leftAmount = atm.amount;
+
+  }
+  else{
+    alert("Invalid withdrawal amount!!!!!")
+  }
+}
