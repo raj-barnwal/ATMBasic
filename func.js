@@ -25,6 +25,7 @@ function addMoney(noof2000, noof500, noof100, total_money){
   atm.avlNotes["500"] += noof500;
   atm.avlNotes["100"] += noof100;
 }
+//addMoney(1,10,5,7500);
 
 //Get values from user
 function addNotes()
@@ -32,16 +33,18 @@ function addNotes()
 	var noof2000=parseInt(document.getElementById('no2000').value);
 	var noof500=parseInt(document.getElementById('no500').value);
 	var noof100=parseInt(document.getElementById('no100').value);
-  if(noof2000 < 0 || noof500 < 0 || noof100 < 0){
-    alert("Please enter a valid value!!!!");
-    return;
-  }
+  //if(noof2000 < 0 || noof500 < 0 || noof100 < 0){
+    //alert("Please enter a valid value!!!!");
+    //return;
+  //}
 	//var total_notes_added=noof2000+noof500+noof100;
 	var total_money=(noof2000*2000 + noof500*500 + noof100*100);
-  if(total_money){
+  if(!total_money){
     alert("Please add something!!")
     return;
   }
+  var btn=document.getElementById('btn1');
+  btn.disabled=true;
 
   addMoney(noof2000, noof500, noof100, total_money);
 
@@ -81,3 +84,5 @@ function validate(amountTransacted){
 
   return false;
 }
+
+//console.log(validate(5100));
