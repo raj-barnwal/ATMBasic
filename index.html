@@ -16,48 +16,65 @@
     </div>
 </div>
 <div class="row">
-    <div class="currencyReport">
-
-    </div>
     <div class="col-md-6">
+        <div id="currencyReport">
+            <table border="1" id="tablecurrency">
+                <thead>
+                <tr>
+                    <th>Amount</th>
+                    <th>2000</th>
+                    <th>500</th>
+                    <th>100</th>
+                    <th>Left Amount</th>
+                </tr>
+                </thead>
+                <tbody class="tablebody">
+
+                </tbody>
+            </table>
+            <br/>
+            <div class="amountSummary">
+                Current Amount:&nbsp;<span id="curAmount">0</span>
+            </div>
+        </div>
         <table>
             <thead>
             <tr>
-            <th rowspan="2">FILL ATM</th>
+                <th colspan="2">FILL ATM</th>
             </tr>
             </thead>
-           <tbody>
+            <tbody>
             <tr>
                 <th>Notes </th>
                 <th> Quantity</th>
             </tr>
             <tr>
                 <td>2000 </td>
-                <td> <input type="number" value="0" id="no2000" min="0" required></td>
+                <td> <input type="text" id="no2000" class="notebox"></td>
             </tr>
 
             <tr>
                 <td>500 </td>
-                <td> <input type="number" value="0" id="no500" min="0" required></td>
+                <td> <input type="text" id="no500" class="notebox"></td>
             </tr>
 
             <tr>
                 <td>100 </td>
-                <td> <input type="number" value="0" id="no100" min="0" required></td>
+                <td> <input type="text" id="no100" class="notebox"></td>
             </tr>
             <tr>
                 <td colspan="2"><button type="button" id="addNote" onclick="addNotes()">Add Money&nbsp;<span class="glyphicon glyphicon-plus-sign"></span></button></td>
             </tr>
-           </tbody>
+            </tbody>
         </table> <br>
 
 
     </div>
     <div class="col-md-6">
         <p>Enter amount you would like to withdraw:</p>
-        <input type="text" placeholder="Enter amount"><br/>
+        <input type="text" placeholder="Enter amount" id="wd"><br/>
         <br/><br/>
-        <button type="button" id="withdrawbtn">WITHDRAW&nbsp;<span class="glyphicon glyphicon-minus-sign"></span></button>
+        <button type="button" id="withdrawbtn" onclick="withdrawal()">WITHDRAW&nbsp;<span class="glyphicon glyphicon-minus-sign"></span></button>
     </div>
 
 </div>

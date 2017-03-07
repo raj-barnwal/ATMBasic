@@ -32,8 +32,8 @@ input{
     font-family: "Times New Roman", Georgia, Serif;
     font-weight: bold;
     font-size: large;
-    margin-left:200px;
     height:40px;
+    width:170px;
 }
 #addNote{
     border-radius:7px;
@@ -43,7 +43,22 @@ input{
     font-weight: bold;
     font-size: large;
     height:40px;
+    float: right;;
+}
+
+.amountSummary{
+    background-color: grey;
+    font-family: "Times New Roman", Georgia, Serif;
+    font-weight: bold;
+    font-size: large;
+    color: white;
+    width: 200px;
     margin-left:200px;
+}
+
+#tablecurrency{
+    border: 1px solid white;
+
 }
 input::-webkit-input-placeholder {
     color: white !important;
@@ -63,6 +78,8 @@ table {
     border-collapse: collapse;
     width: 80%;
     margin-left:20px;
+    font-size: medium;
+    font-weight: bold;
 }
 
 td,th{
@@ -74,4 +91,8 @@ thead {
     color: white;
     margin-left: 50px;
     border-radius: 5px;
+}
+
+.notebox{
+    float: right;
 }

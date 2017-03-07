@@ -42,6 +42,7 @@ function addMoney(noof2000, noof500, noof100, total_money){
 //This function is called when Add Money button is clicked.
 function addNotes()
 {
+  console.log("inside");
 	var noof2000=parseInt(document.getElementById('no2000').value);
 	var noof500=parseInt(document.getElementById('no500').value);
 	var noof100=parseInt(document.getElementById('no100').value);
@@ -61,8 +62,18 @@ function addNotes()
   btn.disabled=true;
 
   addMoney(noof2000, noof500, noof100, total_money);
+  var transaction = new Transaction();
+  transaction.amount = atm.amount;
+  transaction._2000 = atm.avlNotes["2000"];
+  transaction._500 = atm.avlNotes["500"];
+  transaction._100 = atm.avlNotes["100"];
+  transaction.leftAmount = atm.amount;
 
 	alert("Total Money Added : " + total_money + "\nNumber of 2000 notes : " + noof2000 + "\n" + "Number of 500 notes : " + noof500+ "\nNumber of 100 notes : " + noof100);
+
+  $(".tablebody").append('<tr>'+ '<td>'+ transaction.amount +'</td>'+ '<td>'+ transaction._2000 +'</td>'+ '<td>'+ transaction._500 +'</td>'+'<td>'+transaction._100+'</td>'+'<td>'+transaction.leftAmount+'</td>'+'</tr>');
+
+  $("#curAmount").text(atm.amount);
 }
 
 
@@ -116,7 +127,8 @@ function withdrawMoney(noof2000, noof500, noof100, moneyWithdrawn){
 
 //This function called when withdrawal button is clicked.
 function withdrawal(){
-  var withdrawalAmount = parseInt(document.getElementById('withdrawbtn').value);
+  var withdrawalAmount = parseInt(document.getElementById('wd').value);
+  console.log(withdrawalAmount);
   var result = validate(withdrawalAmount);
   if(result){
     withdrawMoney(result["2000"], result["500"], result["100"], withdrawalAmount);
@@ -128,6 +140,9 @@ function withdrawal(){
     transaction._100 = atm.avlNotes["100"];
     transaction.leftAmount = atm.amount;
 
+    $(".tablebody").append('<tr>'+ '<td>'+ transaction.amount +'</td>'+ '<td>'+ transaction._2000 +'</td>'+ '<td>'+ transaction._500 +'</td>'+'<td>'+transaction._100+'</td>'+'<td>'+transaction.leftAmount+'</td>'+'</tr>');
+
+    $("#curAmount").text(atm.amount);
   }
   else{
     alert("Invalid withdrawal amount!!!!!")
