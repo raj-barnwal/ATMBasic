@@ -51,14 +51,15 @@ function addNotes()
   var noof100 = parseInt(document.getElementById('no100').value);
   var maxLimit = parseInt(document.getElementById('maxLimit').value);
 
-  if(noof2000 < 0 || noof500 < 0 || noof100 < 0 || maxLimit < 100){
-    alert("Please enter a valid value!!!!");
+
+  if(noof2000 < 0 || noof500 < 0 || noof100 < 0){
+    $("#ErrorBank").text("Please Enter Positive number of Notes");
     return;
   }
 
   var total_money=(noof2000*2000 + noof500*500 + noof100*100);
   if(!total_money){
-    alert("Please add something!!")
+    $("#ErrorBank").text("Please Add Notes in the ATM");
     return;
   }
 

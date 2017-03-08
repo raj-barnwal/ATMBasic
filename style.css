@@ -25,6 +25,12 @@ input{
     font-weight: bold;
 
 }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+
+    opacity: 1;
+}
 #withdrawbtn{
     border-radius:7px;
     background-color: midnightblue;
@@ -108,7 +114,14 @@ thead {
 
 }
 
+
 #withdrawError{
 	text-align:center
 	color:red;
 }
+
+#ErrorBank{
+    color: red;
+    text-align: center;
+}
+
