@@ -107,3 +107,8 @@ thead {
   color: white;
 
 }
+
+#ErrorBank{
+    color: red;
+    text-align: center;
+}
