@@ -78,8 +78,6 @@ function addNotes()
   transaction._50 = noof50;
   transaction.leftAmount = atm.amount;
 
-  alert("Total Money Added : " + total_money + "\nNumber of 2000 notes : " + noof2000 + "\nNumber of 500 notes : " + noof500 + "\nNumber of 100 notes : " + noof100 + "\nNumber of 50 notes : " + noof50);
-
   $(".tablebody").append('<tr class="green">'+ '<td>'+ transaction.amount +'</td>'+ '<td>'+ transaction._2000 +'</td>'+ '<td>'+ transaction._500 +'</td>'+'<td>'+transaction._100+'</td>'+transaction._50+'</td>'+'<td>'+transaction.leftAmount+'</td>'+'</tr>');
 
   $("#curAmount").text(atm.amount);
