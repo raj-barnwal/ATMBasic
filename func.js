@@ -94,6 +94,7 @@ function addNotes()
   transaction._100 = noof100;
   transaction._50 = noof50;
   transaction.leftAmount = atm.amount;
+  transaction.db_cr = 1;
 
   //Add the transaction to stats array
   stats.push(transaction);
@@ -216,4 +217,6 @@ function withdrawal(){
   else{
     $('#withdrawError').html("***Oops! Currency Not Available***");
   }
+
+  //console.log(stats);
 }
