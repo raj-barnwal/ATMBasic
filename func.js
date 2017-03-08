@@ -1,3 +1,4 @@
+//This function initialize the avlNotes object with 0 value.
 function initializeAvailableNotes(noteTypes){
   var avlNotes = {};
   for (var i in noteTypes) {
@@ -6,6 +7,7 @@ function initializeAvailableNotes(noteTypes){
   return avlNotes;
 }
 
+//ATM class
 function Atm(){
   //Total amount in ATM
   this.amount = 0;
@@ -17,8 +19,8 @@ function Atm(){
   this.maxLimit = 50;
 }
 
+//atm object
 var atm = new Atm();
-//console.log(atm);
 
 
 //Transaction class
@@ -32,6 +34,11 @@ function Transaction(){
   this.leftAmount;
 }
 
+
+//This array contains all the transactions.
+var stats = [];
+
+
 //Add money to Atm
 function addMoney(noof2000, noof500, noof100, noof50, total_money, maxLimit){
   atm.amount += total_money;
@@ -41,13 +48,12 @@ function addMoney(noof2000, noof500, noof100, noof50, total_money, maxLimit){
   atm.avlNotes["50"] += noof50;
   atm.maxLimit = maxLimit;
 }
-//addMoney(1,10,5,7500);
 
 
 //This function is called when Add Money button is clicked.
 function addNotes()
 {
-  console.log("inside");
+  //Parse values from input fields.
   var noof2000 = parseInt(document.getElementById('no2000').value);
   var noof500 = parseInt(document.getElementById('no500').value);
   var noof100 = parseInt(document.getElementById('no100').value);
@@ -59,17 +65,22 @@ function addNotes()
     return;
   }
 
+  //Calculate total money added to ATM in this transaction.
   var total_money=(noof2000*2000 + noof500*500 + noof100*100 + noof50*50);
+  //Check if nothing is added.
   if(!total_money){
     $("#ErrorBank").text("Please Add Notes in the ATM");
     return;
   }
 
+  //Update values in ATM
   addMoney(noof2000, noof500, noof100, noof50, total_money, maxLimit);
 
+  //Disable Add money button
   var btn=document.getElementById('addNote');
   btn.disabled=true;
 
+  //Making transaction object for this transaction.
   var transaction = new Transaction();
   transaction.amount = total_money;
   transaction._2000 = noof2000;
@@ -78,10 +89,21 @@ function addNotes()
   transaction._50 = noof50;
   transaction.leftAmount = atm.amount;
 
-  alert("Total Money Added : " + total_money + "\nNumber of 2000 notes : " + noof2000 + "\nNumber of 500 notes : " + noof500 + "\nNumber of 100 notes : " + noof100 + "\nNumber of 50 notes : " + noof50);
+  //Add the transaction to stats array
+  stats.push(transaction);
 
-  $(".tablebody").append('<tr class="green">'+ '<td>'+ transaction.amount +'</td>'+ '<td>'+ transaction._2000 +'</td>'+ '<td>'+ transaction._500 +'</td>'+'<td>'+transaction._100+'</td>'+transaction._50+'</td>'+'<td>'+transaction.leftAmount+'</td>'+'</tr>');
+  //Append row in table
+  $(".tablebody").append(
+    '<tr class="green">' +
+    '<td>'+transaction.amount+'</td>' +
+    '<td>'+transaction._2000+'</td>' +
+    '<td>'+transaction._500+'</td>' +
+    '<td>'+transaction._100+'</td>' +
+    '<td>'+transaction._50+'</td>' +
+    '<td>'+transaction.leftAmount+'</td>' +
+    '</tr>');
 
+  //Update current amount
   $("#curAmount").text(atm.amount);
 }
 
@@ -127,14 +149,8 @@ function validate(amountTransacted){
   return 0;
 }
 
-//console.log(validate(7100));
 
-
-
-//This array contains all the transactions.
-var stats = [];
-
-//Update value in ATM
+//Withdraw money from ATM
 function withdrawMoney(noof2000, noof500, noof100, noof50, moneyWithdrawn){
   atm.amount -= moneyWithdrawn;
   atm.avlNotes["2000"] -= noof2000;
@@ -145,12 +161,17 @@ function withdrawMoney(noof2000, noof500, noof100, noof50, moneyWithdrawn){
 
 //This function called when withdrawal button is clicked.
 function withdrawal(){
+
+  //Getting the amount entered by user.
   var withdrawalAmount = parseInt(document.getElementById('wd').value);
+
+  //Check if -ve amount is entered by user.
   if(withdrawalAmount <= 0){
     $('#withdrawError').html("***Please enter some amount***");
     return;
   }
-  //console.log(withdrawalAmount);
+
+  //Check if entered amount can be withdrawn.
   var result = validate(withdrawalAmount);
   if(result == 1){
     $('#withdrawError').html("***Insufficient balance***");
@@ -160,9 +181,13 @@ function withdrawal(){
     $('#withdrawError').html("***Limit Exceeded***");
     return;
   }
+
+  //'if' block will execute if amount can be withdrawn.
   if(result){
+    //Getting number of notes required from the result object and updating value to ATM.
     withdrawMoney(result["2000"], result["500"], result["100"], result["50"], withdrawalAmount);
 
+    //Making transaction object for this transaction.
     var transaction = new Transaction();
     transaction.amount = withdrawalAmount;
     transaction._2000 = atm.avlNotes["2000"];
@@ -171,10 +196,17 @@ function withdrawal(){
     transaction._50 = atm.avlNotes["50"];
     transaction.leftAmount = atm.amount;
 
+    //Adding transaction object to stats array
+    stats.push(transaction);
+
+    //Adding row to transaction table
     $(".tablebody").append('<tr class="red">'+ '<td>'+ transaction.amount +'</td>'+ '<td>'+ transaction._2000 +'</td>'+ '<td>'+ transaction._500 +'</td>'+'<td>'+transaction._100+'</td>'+'<td>'+transaction._50+'</td>'+'<td>'+transaction.leftAmount+'</td>'+'</tr>');
 
+    //Updating current amount
     $("#curAmount").text(atm.amount);
   }
+
+  //If amount cannot be withdrawn.
   else{
     $('#withdrawError').html("***Oops! something went wrong please refresh the page***");
   }
