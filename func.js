@@ -55,13 +55,13 @@ function addNotes()
   var maxLimit = parseInt(document.getElementById('maxLimit').value);
 
   if(noof2000 < 0 || noof500 < 0 || noof100 < 0 || noof50 < 0 || maxLimit < 100){
-    alert("Please enter a valid value!!!!");
+    $("#ErrorBank").text("Please Enter Positive number of Notes");
     return;
   }
 
   var total_money=(noof2000*2000 + noof500*500 + noof100*100 + noof50*50);
   if(!total_money){
-    alert("Please add something!!")
+    $("#ErrorBank").text("Please Add Notes in the ATM");
     return;
   }
 
@@ -147,17 +147,17 @@ function withdrawMoney(noof2000, noof500, noof100, noof50, moneyWithdrawn){
 function withdrawal(){
   var withdrawalAmount = parseInt(document.getElementById('wd').value);
   if(withdrawalAmount <= 0){
-    alert("Please Enter a valid amount!!!");
+    $('#withdrawError').html("***Please enter some amount***");
     return;
   }
   //console.log(withdrawalAmount);
   var result = validate(withdrawalAmount);
   if(result == 1){
-    alert("Balance not available!");
+    $('#withdrawError').html("***Insufficient balance***");
     return;
   }
   if(result == 2){
-    alert("Maximum Limit Exceeded");
+    $('#withdrawError').html("***Limit Exceeded***");
     return;
   }
   if(result){
@@ -176,6 +176,6 @@ function withdrawal(){
     $("#curAmount").text(atm.amount);
   }
   else{
-    alert("Invalid withdrawal amount!!!!!")
+    $('#withdrawError').html("***Oops! something went wrong please refresh the page***");
   }
 }
