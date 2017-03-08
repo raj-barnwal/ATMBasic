@@ -14,7 +14,7 @@
         <div class="col-md-6">STATS REPORTS</div>
         <div class="col-md-6">CUSTOMER VIEW</div>
     </div>
-</div>
+
 <div class="row">
     <div class="col-md-6">
         <div id="currencyReport">
@@ -32,12 +32,12 @@
                 <tbody class="tablebody">
 
                 </tbody>
-            </table>
-            <br/>
+            </table><br/>
+        </div>
             <div class="amountSummary">
                 Current Amount:&nbsp;<span id="curAmount">0</span>
             </div>
-        </div>
+
         <table>
             <thead>
             <tr>
@@ -78,8 +78,8 @@
                 <td colspan="2"><button type="button" value="0" id="addNote" onclick="addNotes()">Add Money&nbsp;<span class="glyphicon glyphicon-plus-sign"></span></button></td>
             </tr>
             </tbody>
-        </table> <br>
-        <p id="ErrorBank">Nothing to See Here!!!</p>
+        </table>
+
 
     </div>
     <div class="col-md-6">
@@ -87,11 +87,15 @@
         <input type="text" placeholder="Enter amount" id="wd"><br/>
         <br/><br/>
         <button type="button" id="withdrawbtn" onclick="withdrawal()">WITHDRAW&nbsp;<span class="glyphicon glyphicon-minus-sign"></span></button>
-	<p id="withdrawError"> </p>
     </div>
 
 </div>
+<div class="row footer">
+    <div class="col-md-12" id="Error"></div>
 
+    </div>
+</div>
+</div>
 <script type="text/javascript" src="func.js"></script>
 </body>
 </html>
