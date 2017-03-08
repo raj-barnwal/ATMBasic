@@ -60,14 +60,18 @@ function addNotes()
   var noof50 = parseInt(document.getElementById('no50').value);
   var maxLimit = parseInt(document.getElementById('maxLimit').value);
 
+  if(noof2000 == 0 && noof500 == 0 && noof100 == 0 && noof50 ==0){
+      $("#Error").text("Please Enter some notes");
+      return;
+  }
   if(noof2000 < 0 || noof500 < 0 || noof100 < 0 || noof50 < 0){
-    $("#ErrorBank").text("Please Enter Positive number of Notes");
+    $("#Error").text("Please Enter Positive number of Notes");
     return;
   }
 
   if(maxLimit<50)
   {
-    $("#ErrorBank").text("Please Enter Maximum Limit (Minimum 50)");
+    $("#Error").text("Please Enter Maximum Limit (Minimum 50)");
     return;
   }
 
@@ -75,7 +79,7 @@ function addNotes()
   var total_money=(noof2000*2000 + noof500*500 + noof100*100 + noof50*50);
   //Check if nothing is added.
   if(!total_money){
-    $("#ErrorBank").text("Please Add Notes in the ATM");
+    $("#Error").text("Please Add Notes in the ATM");
     return;
   }
 
@@ -173,18 +177,18 @@ function withdrawal(){
 
   //Check if -ve amount is entered by user.
   if(withdrawalAmount <= 0){
-    $('#withdrawError').html("***Please enter some amount***");
+    $('#Error').html("***Please enter some amount***");
     return;
   }
 
   //Check if entered amount can be withdrawn.
   var result = validate(withdrawalAmount);
   if(result == 1){
-    $('#withdrawError').html("***Insufficient balance***");
+    $('#Error').html("***Insufficient balance***");
     return;
   }
   if(result == 2){
-    $('#withdrawError').html("***Limit Exceeded***");
+    $('#Error').html("***Limit Exceeded***");
     return;
   }
 
@@ -214,6 +218,6 @@ function withdrawal(){
 
   //If amount cannot be withdrawn.
   else{
-    $('#withdrawError').html("***Oops! Currency Not Available***");
+    $('#Error').html("***Oops! Currency Not Available***");
   }
 }
