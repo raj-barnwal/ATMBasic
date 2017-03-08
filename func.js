@@ -13,6 +13,8 @@ function Atm(){
   this.noteTypes = [2000, 500, 100];
   //Object in which key denotes type of Note and value denotes Number of notes
   this.avlNotes = initializeAvailableNotes(this.noteTypes);
+  //Max Limit user can withdrawal
+  this.maxLimit = 100;
 }
 
 var atm = new Atm();
@@ -30,11 +32,12 @@ function Transaction(){
 }
 
 //Add money to Atm
-function addMoney(noof2000, noof500, noof100, total_money){
+function addMoney(noof2000, noof500, noof100, total_money, maxLimit){
   atm.amount += total_money;
   atm.avlNotes["2000"] += noof2000;
   atm.avlNotes["500"] += noof500;
   atm.avlNotes["100"] += noof100;
+  atm.maxLimit = maxLimit;
 }
 //addMoney(1,10,5,7500);
 
@@ -43,25 +46,27 @@ function addMoney(noof2000, noof500, noof100, total_money){
 function addNotes()
 {
   console.log("inside");
-	var noof2000=parseInt(document.getElementById('no2000').value);
-	var noof500=parseInt(document.getElementById('no500').value);
-	var noof100=parseInt(document.getElementById('no100').value);
+  var noof2000 = parseInt(document.getElementById('no2000').value);
+  var noof500 = parseInt(document.getElementById('no500').value);
+  var noof100 = parseInt(document.getElementById('no100').value);
+  var maxLimit = parseInt(document.getElementById('maxLimit').value);
 
-  if(noof2000 < 0 || noof500 < 0 || noof100 < 0){
+  if(noof2000 < 0 || noof500 < 0 || noof100 < 0 || maxLimit < 100){
     alert("Please enter a valid value!!!!");
     return;
   }
-	var total_notes_added=noof2000+noof500+noof100;
 
-	var total_money=(noof2000*2000 + noof500*500 + noof100*100);
+  var total_money=(noof2000*2000 + noof500*500 + noof100*100);
   if(!total_money){
     alert("Please add something!!")
     return;
   }
+
+  addMoney(noof2000, noof500, noof100, total_money, maxLimit);
+
   var btn=document.getElementById('addNote');
   btn.disabled=true;
 
-  addMoney(noof2000, noof500, noof100, total_money);
   var transaction = new Transaction();
   transaction.amount = atm.amount;
   transaction._2000 = atm.avlNotes["2000"];
@@ -69,7 +74,7 @@ function addNotes()
   transaction._100 = atm.avlNotes["100"];
   transaction.leftAmount = atm.amount;
 
-	alert("Total Money Added : " + total_money + "\nNumber of 2000 notes : " + noof2000 + "\n" + "Number of 500 notes : " + noof500+ "\nNumber of 100 notes : " + noof100);
+  alert("Total Money Added : " + total_money + "\nNumber of 2000 notes : " + noof2000 + "\n" + "Number of 500 notes : " + noof500+ "\nNumber of 100 notes : " + noof100);
 
   $(".tablebody").append('<tr class="green">'+ '<td>'+ transaction.amount +'</td>'+ '<td>'+ transaction._2000 +'</td>'+ '<td>'+ transaction._500 +'</td>'+'<td>'+transaction._100+'</td>'+'<td>'+transaction.leftAmount+'</td>'+'</tr>');
 
@@ -82,6 +87,10 @@ function validate(amountTransacted){
 
   if(amountTransacted > atm.amount){
     return 1;
+  }
+
+  if(amountTransacted > atm.maxLimit){
+    return 2;
   }
 
   if(amountTransacted % 100 == 0){
@@ -136,10 +145,14 @@ function withdrawal(){
     alert("Please Enter a valid amount!!!");
     return;
   }
-  console.log(withdrawalAmount);
+  //console.log(withdrawalAmount);
   var result = validate(withdrawalAmount);
   if(result == 1){
     alert("Balance not available!");
+    return;
+  }
+  if(result == 2){
+    alert("Maximum Limit Exceeded");
     return;
   }
   if(result){
