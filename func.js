@@ -90,6 +90,9 @@ function addNotes()
   var btn=document.getElementById('addNote');
   btn.disabled=true;
   $('#addNote').css("background","grey");
+  $('#atm').hide();
+	$("#Error").text("Cash deposited successfully");
+  
 
   //Making transaction object for this transaction.
   var transaction = new Transaction();
@@ -207,7 +210,8 @@ function withdrawal(){
     transaction._100 = atm.avlNotes["100"];
     transaction._50 = atm.avlNotes["50"];
     transaction.leftAmount = atm.amount;
-
+	
+	$("#Error").text("Transaction successful");
     //Adding transaction object to stats array
     stats.push(transaction);
 
