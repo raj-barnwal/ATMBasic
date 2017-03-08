@@ -60,8 +60,14 @@ function addNotes()
   var noof50 = parseInt(document.getElementById('no50').value);
   var maxLimit = parseInt(document.getElementById('maxLimit').value);
 
-  if(noof2000 < 0 || noof500 < 0 || noof100 < 0 || noof50 < 0 || maxLimit < 100){
+  if(noof2000 < 0 || noof500 < 0 || noof100 < 0 || noof50 < 0){
     $("#ErrorBank").text("Please Enter Positive number of Notes");
+    return;
+  }
+
+  if(maxLimit<50)
+  {
+    $("#ErrorBank").text("Please Enter Maximum Limit (Minimum 50)");
     return;
   }
 
@@ -208,6 +214,6 @@ function withdrawal(){
 
   //If amount cannot be withdrawn.
   else{
-    $('#withdrawError').html("***Oops! something went wrong please refresh the page***");
+    $('#withdrawError').html("***Oops! Currency Not Available***");
   }
 }
