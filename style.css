@@ -107,3 +107,8 @@ thead {
   color: white;
 
 }
+
+#withdrawError{
+	text-align:center
+	color:red;
+}

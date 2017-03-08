@@ -142,7 +142,7 @@ function withdrawMoney(noof2000, noof500, noof100, moneyWithdrawn){
 function withdrawal(){
   var withdrawalAmount = parseInt(document.getElementById('wd').value);
   if(withdrawalAmount <= 0){
-    alert("Please Enter a valid amount!!!");
+    $('#withdrawError').html("***Please enter some amount***");
     return;
   }
   //console.log(withdrawalAmount);
