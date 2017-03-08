@@ -89,6 +89,7 @@ function addNotes()
   //Disable Add money button
   var btn=document.getElementById('addNote');
   btn.disabled=true;
+  $('#addNote').css("background","grey");
 
   //Making transaction object for this transaction.
   var transaction = new Transaction();
