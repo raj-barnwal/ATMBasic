@@ -149,11 +149,11 @@ function withdrawal(){
   //console.log(withdrawalAmount);
   var result = validate(withdrawalAmount);
   if(result == 1){
-    alert("Balance not available!");
+    $('#withdrawError').html("***Insufficient balance***");
     return;
   }
   if(result == 2){
-    alert("Maximum Limit Exceeded");
+    $('#withdrawError').html("***Limit Exceeded***");
     return;
   }
   if(result){
@@ -171,6 +171,6 @@ function withdrawal(){
     $("#curAmount").text(atm.amount);
   }
   else{
-    alert("Invalid withdrawal amount!!!!!")
+    $('#withdrawError').html("***Oops! something went wrong please refresh the page***");
   }
 }
